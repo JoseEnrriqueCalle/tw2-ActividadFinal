@@ -1,0 +1,101 @@
+Pasos Para La Instalacion De Cake Php
+
+
+primero necesitaremos ubicarnos en el docker lamp_docker u otro docker
+
+
+tendremos que bajarlo el docker con el sgte comando:
+
+
+ 
+docker compose down
+
+
+y nos ubicamos en la carpeta del dockersrc 
+
+y ejecutamos el siguiente script o ejecutamos el archivo cakephp-install.sh que esta en la raiz principal 
+
+------------------------------------------------------------------
+
+sudo apt update
+sudo apt -y install curl php-cli php-mbstring git unzip
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+HASH=`curl -sS https://composer.github.io/installer.sig`
+sudo php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+composer
+sudo apt-get install apache2 php libapache2-mod-php php-{cli,common,curl,zip,gd,mysql,xml,mbstring,json,intl,bcmath,sqlite3}
+sudo systemctl restart apache2
+sudo a2enmod rewrite
+sudo mousepad /etc/apache2/apache2.conf
+sudo systemctl restart apache2
+cd /var/www/
+sudo chmod -R 777 html/
+cd html
+composer create-project --prefer-dist cakephp/app:~4.0 app
+cd /var/www/html/app
+bin/cake server -H 0.0.0.0
+
+
+-------------------------------------------------------------------
+en un punto del script nos abrira el mousepad onc el archivo php
+
+y modificamos pemisos Y
+
+
+seguido para que se ejecute el server se usa el comandos
+
+
+rm -R app para borrar la carpeta por si ocurre algun error
+luego para correr es ubicarnos en var/www/html/
+
+
+de ahi tendremos que correr siq ueremos crear docker de nuevo 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pasos para modificar el php cake 
+
+-------------------apache------------------
+
+version: '3'
+
+services: 
+  apache:
+    build: ./apache
+    ports: 
+      - 81:80
+    volumes:
+      - ./src:/var/www/html
+
+
+
+
+
+
+
+
+
+bookmarks
+ composer create-project --prefer-dist cakephp/app:4.* bookmarker
+
+
+
+
+
