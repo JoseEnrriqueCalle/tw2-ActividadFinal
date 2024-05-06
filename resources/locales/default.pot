@@ -1,0 +1,59 @@
+# Traducción al español de la aplicación CakePHP
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2024-05-06 03:15+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Controller/BookmarksController.php:92
+msgid "The bookmark has been deleted."
+msgstr "El marcador ha sido eliminado."
+
+#: ./src/Controller/BookmarksController.php:94
+msgid "The bookmark could not be deleted. Please, try again."
+msgstr "El marcador no pudo ser eliminado. Por favor, inténtelo de nuevo."
+
+#: ./src/Controller/TagsController.php:53
+#: ./src/Controller/TagsController.php:78
+msgid "The tag has been saved."
+msgstr "La etiqueta ha sido guardada."
+
+#: ./src/Controller/TagsController.php:57
+#: ./src/Controller/TagsController.php:82
+msgid "The tag could not be saved. Please, try again."
+msgstr "La etiqueta no pudo ser guardada. Por favor, inténtelo de nuevo."
+
+#: ./src/Controller/TagsController.php:100
+msgid "The tag has been deleted."
+msgstr "La etiqueta ha sido eliminada."
+
+#: ./src/Controller/TagsController.php:102
+msgid "The tag could not be deleted. Please, try again."
+msgstr "La etiqueta no pudo ser eliminada. Por favor, inténtelo de nuevo."
+
+#: ./src/Controller/UsersController.php:53
+#: ./src/Controller/UsersController.php:77
+msgid "The user has been saved."
+msgstr "El usuario ha sido guardado."
+
+#: ./src/Controller/UsersController.php:57
+#: ./src/Controller/UsersController.php:81
+msgid "The user could not be saved. Please, try again."
+msgstr "El usuario no pudo ser guardado. Por favor, inténtelo de nuevo."
+
+#: ./src/Controller/UsersController.php:98
+msgid "The user has been deleted."
+msgstr "El usuario ha sido eliminado."
+
+#: ./src/Controller/UsersController.php:100
+msgid "The user could not be deleted. Please, try again."
+msgstr "El usuario no pudo ser eliminado. Por favor, inténtelo de nuevo."

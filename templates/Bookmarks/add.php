@@ -9,24 +9,24 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Bookmarks'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Listar Marcadores'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="bookmarks form content">
             <?= $this->Form->create($bookmark) ?>
             <fieldset>
-                <legend><?= __('Add Bookmark') ?></legend>
+                <legend><?= __('Agregar Marcador') ?></legend>
                 <?php
-                    echo $this->Form->control('user_id', ['options' => $users]);
-                    echo $this->Form->control('title');
-                    echo $this->Form->control('description');
-                    echo $this->Form->control('url');
-                    echo $this->Form->control('tags._ids', ['options' => $tags]);
+                    echo $this->Form->control('user', ['options' => $users, 'label' => 'Usuario']);
+                    echo $this->Form->control('title', ['label' => 'Título']);
+                    echo $this->Form->control('description', ['label' => 'Descripción']);
+                    echo $this->Form->control('url', ['label' => 'URL']);
+                    echo $this->Form->control('tags._ids', ['options' => $tags, 'label' => 'Etiquetas']);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Enviar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

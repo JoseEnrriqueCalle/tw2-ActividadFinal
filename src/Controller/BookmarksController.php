@@ -3,176 +3,139 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * Bookmarks Controller
- *
- * @property \App\Model\Table\BookmarksTable $Bookmarks
- * @method \App\Model\Entity\Bookmark[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class BookmarksController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
+    // Mostrar una lista de marcadores del usuario actual
     public function index()
     {
-        
+        // Configuración de la paginación para mostrar los marcadores del usuario actual
         $this->paginate = [
             'conditions' => [
                 'Bookmarks.user_id' => $this->Auth->user('id'),
             ]
         ];
+        // Obtener y establecer los marcadores paginados
         $this->set('bookmarks', $this->paginate($this->Bookmarks));
+        // Configurar la serialización para devolver datos en formato JSON
         $this->viewBuilder()->setOption('serialize', ['bookmarks']);
-        
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Bookmark id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    // Ver detalles de un marcador específico
     public function view($id = null)
     {
+        // Obtener el marcador y sus asociaciones (usuarios y etiquetas)
         $bookmark = $this->Bookmarks->get($id, [
             'contain' => ['Users', 'Tags'],
         ]);
-
+        // Pasar el marcador a la vista
         $this->set(compact('bookmark'));
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
-
-
-
-
-     //se elimina control
-     public function add()
-{
-    $bookmark = $this->Bookmarks->newEntity($this->request->getData());
-    $bookmark->user_id = $this->Auth->user('id');
-    if ($this->request->is('post')) {
-        if ($this->Bookmarks->save($bookmark)) {
-            $this->Flash->success('The bookmark has been saved.');
-            return $this->redirect(['action' => 'index']);
-        }
-        $this->Flash->error('The bookmark could not be saved. Please, try again.');
-    }
-    $tags = $this->Bookmarks->Tags->find('list')->all();
-    $users = $this->Bookmarks->Users->find('list')->all(); // Obtener la lista de usuarios
-    $this->set(compact('bookmark', 'tags', 'users')); // Pasar la variable $users a la vista
-    $this->viewBuilder()->setOption('serialize', ['bookmark']);
-}
-
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Bookmark id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-
-
-
-
-public function edit($id = null)
-{
-    $bookmark = $this->Bookmarks->get($id, [
-        'contain' => ['Tags']
-    ]);
-    if ($this->request->is(['patch', 'post', 'put'])) {
-        $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->getData());
+    // Agregar un nuevo marcador
+    public function add()
+    {
+        // Crear una nueva entidad de marcador con los datos de la solicitud
+        $bookmark = $this->Bookmarks->newEntity($this->request->getData());
+        // Establecer el ID de usuario para el nuevo marcador
         $bookmark->user_id = $this->Auth->user('id');
-        if ($this->Bookmarks->save($bookmark)) {
-            $this->Flash->success('The bookmark has been saved.');
-            return $this->redirect(['action' => 'index']);
+        // Guardar el marcador si la solicitud es de tipo POST
+        if ($this->request->is('post')) {
+            if ($this->Bookmarks->save($bookmark)) {
+                $this->Flash->success('El marcador ha sido guardado.');
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error('El Marcador no pudo ser guardado intente de nuevo');
         }
-        $this->Flash->error('The bookmark could not be saved. Please, try again.');
+        // Obtener la lista de etiquetas y usuarios para el formulario
+        $tags = $this->Bookmarks->Tags->find('list')->all();
+        $users = $this->Bookmarks->Users->find('list')->all();
+        // Pasar las variables a la vista
+        $this->set(compact('bookmark', 'tags', 'users'));
+        // Configurar la serialización para devolver datos en formato JSON
+        $this->viewBuilder()->setOption('serialize', ['bookmark']);
     }
-    $tags = $this->Bookmarks->Tags->find('list')->all();
-    $users = $this->Bookmarks->Users->find('list')->all(); // Obtener la lista de usuarios
-    $this->set(compact('bookmark', 'tags', 'users')); // Pasar la lista de usuarios a la vista
-    $this->viewBuilder()->setOption('serialize', ['bookmark']);
-}
 
+    // Editar un marcador existente
+    public function edit($id = null)
+    {
+        // Obtener el marcador y sus etiquetas asociadas
+        $bookmark = $this->Bookmarks->get($id, [
+            'contain' => ['Tags']
+        ]);
+        // Actualizar el marcador con los datos de la solicitud si es de tipo PATCH, POST o PUT
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->getData());
+            $bookmark->user_id = $this->Auth->user('id');
+            if ($this->Bookmarks->save($bookmark)) {
+                $this->Flash->success('El marcador ha sido guardado.');
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error('El Marcador no pudo ser guardado intente de nuevo');
+        }
+        // Obtener la lista de etiquetas y usuarios para el formulario
+        $tags = $this->Bookmarks->Tags->find('list')->all();
+        $users = $this->Bookmarks->Users->find('list')->all();
+        // Pasar las variables a la vista
+        $this->set(compact('bookmark', 'tags', 'users'));
+        // Configurar la serialización para devolver datos en formato JSON
+        $this->viewBuilder()->setOption('serialize', ['bookmark']);
+    }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Bookmark id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    // Eliminar un marcador existente
     public function delete($id = null)
     {
+        // Permitir solo el método POST o DELETE
         $this->request->allowMethod(['post', 'delete']);
+        // Obtener el marcador y eliminarlo
         $bookmark = $this->Bookmarks->get($id);
         if ($this->Bookmarks->delete($bookmark)) {
-            $this->Flash->success(__('The bookmark has been deleted.'));
+            $this->Flash->success(__('El Marcador ha sido eliminado.'));
         } else {
-            $this->Flash->error(__('The bookmark could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El Marcador no pudo ser eliminado, intente de nuevo.'));
         }
-
+        // Redirigir al índice de marcadores
         return $this->redirect(['action' => 'index']);
- 
     }
-        public function tags()
+
+    // Ver marcadores etiquetados con etiquetas específicas
+    public function tags()
     {
-        // The 'pass' key is provided by CakePHP and contains all
-        // the passed URL path segments in the request.
+        // Obtener las etiquetas de la URL
         $tags = $this->request->getParam('pass');
 
-        // Use the BookmarksTable to find tagged bookmarks.
+        // Encontrar los marcadores etiquetados con las etiquetas especificadas
         $bookmarks = $this->Bookmarks->find('tagged', [
-                'tags' => $tags
-            ])
-            ->all();
+            'tags' => $tags
+        ])->all();
 
-        // Pass variables into the view template context.
+        // Pasar variables a la vista
         $this->set([
             'bookmarks' => $bookmarks,
             'tags' => $tags
         ]);
     }
 
-    /**
-     * De manera predeterminada, denegaremos el acceso y otorgaremos acceso incrementalmente 
-     * cuando sea necesario. sentido. Primero, agregaremos la lógica de autorización 
-     * para los marcadores. En tus BookmarksControlleragregue lo siguiente: 
-     * 
-     * 
-     * 
-     * 
-     */
+    // Determinar si un usuario está autorizado para realizar una acción
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
-    
-        // The add and index actions are always allowed.
+
+        // Permitir siempre las acciones de añadir, index y tags
         if (in_array($action, ['index', 'add', 'tags'])) {
             return true;
         }
-        // All other actions require an id.
+        // Requerir un ID para todas las demás acciones
         if (!$this->request->getParam('pass.0')) {
             return false;
         }
-    
-        // Check that the bookmark belongs to the current user.
+
+        // Verificar que el marcador pertenece al usuario actual
         $id = $this->request->getParam('pass.0');
         $bookmark = $this->Bookmarks->get($id);
         if ($bookmark->user_id == $user['id']) {
             return true;
         }
+        // Si no se cumple ninguna condición, utilizar la lógica de autorización predeterminada
         return parent::isAuthorized($user);
     }
-    
 }

@@ -8,21 +8,21 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Tags'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Listar Etiquetas'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="tags form content">
             <?= $this->Form->create($tag) ?>
             <fieldset>
-                <legend><?= __('Add Tag') ?></legend>
+                <legend><?= __('Agregar Etiqueta') ?></legend>
                 <?php
-                    echo $this->Form->control('title');
-                    echo $this->Form->control('bookmarks._ids', ['options' => $bookmarks]);
+                    echo $this->Form->control('título');
+                    echo $this->Form->control('marcadores._ids', ['options' => $marcadores]);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Enviar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

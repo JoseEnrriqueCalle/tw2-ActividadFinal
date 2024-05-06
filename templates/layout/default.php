@@ -16,6 +16,9 @@
 
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,11 +39,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>Biblioteca</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+        <div class="navbar-login">
+                    <?php if ($this->getRequest()->getSession()->check('Auth.User')): ?>
+                        <!-- Verificar si el usuario está autenticado -->
+                        Bienvenido, <?= $this->getRequest()->getSession()->read('Auth.User.email'); ?> |
+                        <!-- Mostrar saludo y enlace de deslogueo -->
+                        <?= $this->Html->link('Cerrar Sesión', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'btn btn-outline-light']); ?>
+                    <?php else: ?>
+                        <!-- Si el usuario no está autenticado -->
+                        <?= $this->Html->link('Ingresar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-outline-light']); ?> |
+                        <?= $this->Html->link('Registrarse', ['controller' => 'Users', 'action' => 'add'], ['class' => 'btn btn-outline-light']); ?>
+                    <?php endif; ?>
+                </div>
         </div>
     </nav>
     <main class="main">

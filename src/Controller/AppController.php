@@ -1,74 +1,49 @@
 <?php
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Framework de Desarrollo Rápido (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licenciado bajo la Licencia MIT
- * Para obtener información completa sobre derechos de autor y licencia, consulte LICENSE.txt
- * Los redistribuciones de archivos deben conservar el aviso de derechos de autor anterior.
- *
- * @copyright Derechos de Autor (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org Proyecto CakePHP(tm)
- * @since     0.2.9
- * @license   https://opensource.org/licenses/mit-license.php Licencia MIT
- */
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Phinx\Db\Table\Index;
 
-/**
- * Controlador de Aplicación
- *
- * Agregue sus métodos de aplicación en toda la clase a continuación, sus controladores
- * los heredarán.
- *
- * @link https://book.cakephp.org/4/es/controllers.html#el-controlador-de-aplicacion
- */
 class AppController extends Controller
 {
-    /**
-     * Método de gancho de inicialización.
-     *
-     * Utilice este método para agregar código de inicialización común como cargar componentes.
-     *
-     * por ejemplo, `$this->loadComponent('FormProtection');`
-     *
-     * @return void
-     */
+    // Función initialize para configurar el controlador
     public function initialize(): void
     {
-       
-
+        // Cargar el componente Flash para mostrar mensajes flash
         $this->loadComponent('Flash');
+
+        // Cargar el componente Auth para la autenticación de usuarios
         $this->loadComponent('Auth', [
-            'authorize'=> 'Controller', // agregué esta línea
+            // Configuración de la autorización y autenticación
+            'authorize'=> 'Controller', // Autorizar mediante el método isAuthorized del controlador
             'authenticate' => [
-                'Form' => [
+                'Form' => [ // Utilizar autenticación mediante formulario
                     'fields' => [
-                        'username' => 'email',
-                        'password' => 'password'
+                        'username' => 'email', // Nombre del campo de correo electrónico en el formulario
+                        'password' => 'password' // Nombre del campo de contraseña en el formulario
                     ]
                 ]
             ],
-            'loginAction' => [
+            'loginAction' => [ // Redirigir a esta acción si se solicita iniciar sesión
                 'controller' => 'Users',
                 'action' => 'login'
             ],
-            'unauthorizedRedirect' => $this->referer()
+            'unauthorizedRedirect' => $this->referer() // Redirigir a la página de referencia si el usuario no está autorizado
         ]);
     
         // Permitir la acción de visualización para que nuestro controlador de páginas
         // continúe funcionando.
-        $this->Auth->allow(['display']);
-
-
-        
+        $this->Auth->allow([
+            'display',
+            'index',
+            'view']);
     }
 
+    // Función isAuthorized para determinar si un usuario está autorizado para realizar una acción
     public function isAuthorized($user)
     {
-        return false;
+        return false; // Por defecto, no se autoriza a ningún usuario
     }
 }

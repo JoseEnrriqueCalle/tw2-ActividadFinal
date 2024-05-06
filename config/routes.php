@@ -1,24 +1,24 @@
 <?php
 /**
- * Routes configuration.
+ * Configuración de rutas.
  *
- * In this file, you set up routes to your controllers and their actions.
- * Routes are very important mechanism that allows you to freely connect
- * different URLs to chosen controllers and their actions (functions).
+ * En este archivo, configuras rutas a tus controladores y sus acciones.
+ * Las rutas son un mecanismo muy importante que te permite conectar libremente
+ * diferentes URLs a controladores seleccionados y sus acciones (funciones).
  *
- * It's loaded within the context of `Application::routes()` method which
- * receives a `RouteBuilder` instance `$routes` as method argument.
+ * Se carga dentro del contexto del método `Application::routes()` que
+ * recibe una instancia de `RouteBuilder` `$routes` como argumento del método.
  *
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * CakePHP(tm) : Framework de Desarrollo Rápido (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * Licenciado bajo The MIT License
+ * Para obtener información completa sobre derechos de autor y licencia, consulta LICENSE.txt
+ * Las redistribuciones de archivos deben conservar el aviso de derechos de autor anterior.
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @link          https://cakephp.org Proyecto CakePHP(tm)
+ * @license       https://opensource.org/licenses/mit-license.php Licencia MIT
  */
 
 use Cake\Routing\Route\DashedRoute;
@@ -26,9 +26,10 @@ use Cake\Routing\RouteBuilder;
 
 $routes->setRouteClass(DashedRoute::class);
 
-// New route we're adding for our tagged action.
-// The trailing `*` tells CakePHP that this action has
-// passed parameters.
+// Nueva ruta que estamos agregando para nuestra acción etiquetada.
+// El `*` al final indica a CakePHP que esta acción tiene
+// parámetros pasados.
+
 $routes->scope(
     '/bookmarks',
     ['controller' => 'Bookmarks'],
@@ -53,27 +54,27 @@ $routes->scope('/', function ($routes) {
 });
 
 /*
- * This file is loaded in the context of the `Application` class.
-  * So you can use  `$this` to reference the application class instance
-  * if required.
+ * Este archivo se carga en el contexto de la clase `Application`.
+ * Entonces puedes usar `$this` para hacer referencia a la instancia de la clase de la aplicación
+ * si es necesario.
  */
 return function (RouteBuilder $routes): void {
-    /*
-     * The default class to use for all routes
+   /*
+     * La clase predeterminada para usar en todas las rutas
      *
-     * The following route classes are supplied with CakePHP and are appropriate
-     * to set as the default:
+     * Las siguientes clases de ruta se suministran con CakePHP y son apropiadas
+     * para establecer como predeterminadas:
      *
      * - Route
      * - InflectedRoute
      * - DashedRoute
      *
-     * If no call is made to `Router::defaultRouteClass()`, the class used is
+     * Si no se hace ninguna llamada a `Router::defaultRouteClass()`, la clase utilizada es
      * `Route` (`Cake\Routing\Route\Route`)
      *
-     * Note that `Route` does not do any inflections on URLs which will result in
-     * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
-     * `{action}` markers.
+     * Ten en cuenta que `Route` no realiza ninguna inflexión en las URL, lo que resultará en
+     * URLs con mayúsculas y minúsculas de manera inconsistente cuando se usen con los marcadores `{plugin}`, `{controller}` y
+     * `{action}`.
      */
     $routes->setRouteClass(DashedRoute::class);
 

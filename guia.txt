@@ -1,0 +1,23 @@
+GUIA PARA FUNCIONAMIENTO E INSTALACION CAKEPHP
+
+
+PRIMERO NECESITAREMOS UBICARNOS EN LA CARPETA DONDE CLONAREMOS
+
+una vez dentro hacemos un git clone 
+
+
+seguido eso ingresamos a la carpeta
+
+y realizamos el comando :
+
+composer install
+
+
+seguido eso necesitaremos crear la base de datos y modificar el app local para redireccionar a tu propia base de datos, en la carpeta se encuentra el archivo sql usado para 
+esta muestra 
+
+
+luego con todo eso solo necesitaremos ubicarnos en la ruta principal y ejecutar 
+bin/cake server 
+y con eso estaria corriendo el servidor cakephp
+

@@ -8,26 +8,26 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
             <?= $this->Form->postLink(
-                __('Delete'),
+                __('Eliminar'),
                 ['action' => 'delete', $tag->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $tag->id), 'class' => 'side-nav-item']
+                ['confirm' => __('¿Estás seguro de que deseas eliminar # {0}?', $tag->id), 'class' => 'side-nav-item']
             ) ?>
-            <?= $this->Html->link(__('List Tags'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Listar Etiquetas'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="tags form content">
             <?= $this->Form->create($tag) ?>
             <fieldset>
-                <legend><?= __('Edit Tag') ?></legend>
+                <legend><?= __('Editar Etiqueta') ?></legend>
                 <?php
-                    echo $this->Form->control('title');
-                    echo $this->Form->control('bookmarks._ids', ['options' => $bookmarks]);
+                    echo $this->Form->control('título');
+                    echo $this->Form->control('marcadores._ids', ['options' => $marcadores]);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Enviar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

@@ -1,0 +1,77 @@
+primer paso 
+
+
+bin/cake i18n extract --output locales
+ 
+luego de esos nos sale la ruta donde se crea 
+
+
+Extracting...
+-------------------------------------------------------------------------------
+Paths:
+   /var/www/html/bookmarker/src/
+Output Directory: locales/
+-------------------------------------------------------------------------------
+==========================================================================> 100%
+
+
+
+en esa ruta tendremos que irnos y ahi aparecera un archivo 
+aunque en la guia se menciona que debemos de crear de esta manera asi que lo movere para adaptarlo 
+
+
+
+
+/resources
+    /locales
+        /en_US
+            default.po
+        /en_GB
+            default.po
+            validation.po
+        /es
+            default.po
+
+
+
+y tendremos el archivo default.pot dentro de resources/locales/es/default.pot
+
+
+
+seguido eso necesitaremos un programa que nos ayude a transformar el archivo a binario .mo
+
+
+sudo apt-get install gettext
+
+
+
+
+ msgfmt -o default.mo default.pot
+
+ejecutamos ese comando para realizar la conversion seguido  eso modificamos nuestro app.php para que tenga ruta de traducciones 
+
+
+quedaria algo asi
+
+
+
+
+'App' => [
+        'namespace' => 'App',
+        'encoding' => env('APP_ENCODING', 'UTF-8'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'es_ES'), // Idioma predeterminado: español
+        'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
+        'base' => false,
+        'dir' => 'src',
+        'webroot' => 'webroot',
+        'wwwRoot' => WWW_ROOT,
+        'fullBaseUrl' => false,
+        'imageBaseUrl' => 'img/',
+        'cssBaseUrl' => 'css/',
+        'jsBaseUrl' => 'js/',
+        'paths' => [
+            'plugins' => [ROOT . DS . 'plugins' . DS],
+            'templates' => [ROOT . DS . 'templates' . DS],
+            'locales' => [RESOURCES . 'locales' . DS . 'es' . DS], // Ruta al directorio de traducciones en español
+        ],
+    ],

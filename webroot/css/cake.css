@@ -60,8 +60,8 @@ body {
     background: #ffffff;
     border-radius: 0.4rem;
     /* Thanks Stripe */
-    box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
-        0 3px 6px 0 rgba(0, 0, 0, 0.07);
+    box-shadow: 0 20px 14px 0 rgba(60, 66, 87, 0.1),
+        0 22px 6px 0 rgba(0, 0, 0, 0.07);
 }
 .actions a {
     font-weight: bold;
@@ -79,22 +79,28 @@ th {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 112rem;
-    padding: 2rem;
+    max-width: 180rem;
+    padding: 1rem;
     margin: 0 auto 2rem;
+    background-color: #3ca0e5; /* Cambiar color de fondo a azul turquesa */
+    border-radius: 0.4rem; /* Agregar bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agregar sombra */
 }
+
 .top-nav-title a {
     font-size: 2.4rem;
-    color: #d33c43;
+    color: #fff; /* Cambiar color de texto a blanco */
+    text-decoration: none; /* Quitar subrayado */
 }
+
 .top-nav-title span {
-    color: #404041;
+    color: #f0f0f0; /* Cambiar color de subtítulo a un tono más claro */
 }
+
 .top-nav-links a {
     margin: 0 0.5rem;
-}
-.top-nav-title a,
-.top-nav-links a {
+    color: #fff; /* Cambiar color de enlaces a blanco */
+    text-decoration: none; /* Quitar subrayado */
     font-weight: bold;
 }
 
@@ -103,6 +109,9 @@ th {
     padding: 0.5rem 0;
 }
 
+
+
+
 /* View action */
 .view.content .text {
     margin-top: 1.2rem;
@@ -110,6 +119,8 @@ th {
 .related {
     margin-top: 2rem;
 }
+
+
 
 /* Flash messages */
 .message {
