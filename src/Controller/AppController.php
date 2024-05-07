@@ -35,10 +35,13 @@ class AppController extends Controller
     
         // Permitir la acción de visualización para que nuestro controlador de páginas
         // continúe funcionando.
-        $this->Auth->allow([
-            'display',
-            'index',
-            'view']);
+        $this->Auth->allow();
+
+
+       // [
+       //     'display',
+        //    'index',
+        //    'view']
     }
 
     // Función isAuthorized para determinar si un usuario está autorizado para realizar una acción

@@ -8,10 +8,10 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Tag'), ['action' => 'edit', $tag->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Tag'), ['action' => 'delete', $tag->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tag->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Tags'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Tag'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Editar Tag'), ['action' => 'edit', $tag->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Eliminar Tag'), ['action' => 'delete', $tag->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tag->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Listar Tags'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Nuevo Tag'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
@@ -19,7 +19,7 @@
             <h3><?= h($tag->title) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Title') ?></th>
+                    <th><?= __('Titulo') ?></th>
                     <td><?= h($tag->title) ?></td>
                 </tr>
                 <tr>
@@ -27,11 +27,11 @@
                     <td><?= $this->Number->format($tag->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Created') ?></th>
+                    <th><?= __('Creado') ?></th>
                     <td><?= h($tag->created) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Modified') ?></th>
+                    <th><?= __('Modificado') ?></th>
                     <td><?= h($tag->modified) ?></td>
                 </tr>
             </table>

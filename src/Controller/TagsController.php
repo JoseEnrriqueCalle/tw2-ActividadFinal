@@ -50,11 +50,11 @@ class TagsController extends AppController
         if ($this->request->is('post')) {
             $tag = $this->Tags->patchEntity($tag, $this->request->getData());
             if ($this->Tags->save($tag)) {
-                $this->Flash->success(__('The tag has been saved.'));
+                $this->Flash->success(__('El tag ha sido guardado'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The tag could not be saved. Please, try again.'));
+            $this->Flash->error(__('El tag no ha sido guardado, intente de nuevo'));
         }
         $bookmarks = $this->Tags->Bookmarks->find('list', ['limit' => 200])->all();
         $this->set(compact('tag', 'bookmarks'));
@@ -75,11 +75,11 @@ class TagsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $tag = $this->Tags->patchEntity($tag, $this->request->getData());
             if ($this->Tags->save($tag)) {
-                $this->Flash->success(__('The tag has been saved.'));
+                $this->Flash->success(__('El tag ha sido guardado'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The tag could not be saved. Please, try again.'));
+            $this->Flash->error(__('El tag no ha sido guardado, intente de nuevo'));
         }
         $bookmarks = $this->Tags->Bookmarks->find('list', ['limit' => 200])->all();
         $this->set(compact('tag', 'bookmarks'));
@@ -97,9 +97,9 @@ class TagsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $tag = $this->Tags->get($id);
         if ($this->Tags->delete($tag)) {
-            $this->Flash->success(__('The tag has been deleted.'));
+            $this->Flash->success(__('El tag ha sido guardado'));
         } else {
-            $this->Flash->error(__('The tag could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El tag no ha sido guardado, intente de nuevo'));
         }
 
         return $this->redirect(['action' => 'index']);

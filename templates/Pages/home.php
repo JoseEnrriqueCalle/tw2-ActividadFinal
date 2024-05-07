@@ -171,7 +171,7 @@ endif;
                         <a class="nav-link" href="http://localhost:8765/bookmarks/">Marcadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8765/users/">Usuario</a>
+                        <a class="nav-link" href="http://localhost:8765/users/">Usuarios</a>
                     </li>
                 </ul>
                 <!-- Inicio de sesión / Cierre de sesión -->
@@ -184,8 +184,8 @@ endif;
                         <?= $this->Html->link('Cerrar Sesión', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'btn btn-outline-light']); ?>
                     <?php else: ?>
                         <!-- Si el usuario no está autenticado -->
-                        <?= $this->Html->link('Ingresar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-outline-light']); ?> |
-                        <?= $this->Html->link('Registrarse', ['controller' => 'Users', 'action' => 'add'], ['class' => 'btn btn-outline-light']); ?>
+                        <?= $this->Html->link('Ingresar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-outline-light']); ?>
+                      
                     <?php endif; ?>
                 </div>
         </div>
@@ -193,6 +193,24 @@ endif;
         </div>
     </nav>
 </header>
+<!-- About Section -->
+<section class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container text-center">
+                    <h2>Acerca de nuestra biblioteca</h2>
+                    <p>En nuestra biblioteca virtual, nos dedicamos a promover la lectura y el conocimiento a través de una amplia colección de libros en línea.</p>
+                    <p>Explora nuestras categorías y descubre nuevas historias que te cautivarán.</p>
+                    <a href="#" class="btn btn-primary">Conoce más</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="<?= $this->Url->webroot('img/libro2.jpg') ?>" alt="libro2" class="img-fluid" style="max-height: 300px;">
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -212,25 +230,6 @@ endif;
     </div>
 </section>
 
-<!-- About Section -->
-<section class="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="<?= $this->Url->webroot('img/libro2.jpg') ?>" alt="libro2" class="img-fluid" style="max-height: 300px;">
-            </div>
-            <div class="col-md-6">
-                <div class="container text-center">
-                    <h2>Acerca de nuestra biblioteca</h2>
-                    <p>En nuestra biblioteca virtual, nos dedicamos a promover la lectura y el conocimiento a través de una amplia colección de libros en línea.</p>
-                    <p>Explora nuestras categorías y descubre nuevas historias que te cautivarán.</p>
-                    <a href="#" class="btn btn-primary">Conoce más</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Categories Section -->
 <section class="categories">
     <div class="container">
@@ -244,6 +243,7 @@ endif;
                     <div class="card-body">
                         <h5 class="card-title"><strong>Ficción</strong></h5>
                         <p class="card-text">Sumérgete en mundos imaginarios y vive aventuras inolvidables con nuestra selección de libros de ficción.</p>
+                        <a href="#" class="btn btn-primary">Ver libros de Ficción</a>
                     </div>
                 </div>
             </div>
@@ -253,6 +253,7 @@ endif;
                     <div class="card-body">
                         <h5 class="card-title"><strong>No Ficción</strong></h5>
                         <p class="card-text">Descubre libros informativos y educativos que te ayudarán a ampliar tus conocimientos en diversos temas.</p>
+                        <a href="#" class="btn btn-primary">Ver libros de No Ficción</a>
                     </div>
                 </div>
             </div>
@@ -262,6 +263,7 @@ endif;
                     <div class="card-body">
                         <h5 class="card-title"><strong>Ciencia Ficción</strong></h5>
                         <p class="card-text">Explora futuros alternativos y tecnologías asombrosas en nuestra colección de ciencia ficción.</p>
+                        <a href="#" class="btn btn-primary">Ver libros de Ciencia Ficción</a>
                     </div>
                 </div>
             </div>

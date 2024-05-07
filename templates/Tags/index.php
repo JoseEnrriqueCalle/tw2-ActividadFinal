@@ -5,18 +5,21 @@
  */
 ?>
 <div class="tags index content">
-    <?= $this->Html->link(__('New Tag'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Nueva etiqueta'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Tags') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('title') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort('titulo') ?></th>
+                    <th><?= $this->Paginator->sort('creado') ?></th>
+                    <th><?= $this->Paginator->sort('modificado') ?></th>
+                    <th class="actions"><?= __('Acciones') ?></th>
                 </tr>
+                    
+
+
             </thead>
             <tbody>
                 <?php foreach ($tags as $tag): ?>
@@ -37,12 +40,12 @@
     </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primero')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
+            <?= $this->Paginator->last(__('Último') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        <p><?= $this->Paginator->counter(__('Página {{page}} de {{pages}}, mostrando {{current}} registro(s) de un total de {{count}}')) ?></p>
     </div>
 </div>

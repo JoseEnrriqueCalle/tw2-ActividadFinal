@@ -41,8 +41,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Biblioteca</a>
         </div>
+        
         <div class="top-nav-links">
+            
         <div class="navbar-login">
+                
                     <?php if ($this->getRequest()->getSession()->check('Auth.User')): ?>
                         <!-- Verificar si el usuario está autenticado -->
                         Bienvenido, <?= $this->getRequest()->getSession()->read('Auth.User.email'); ?> |
